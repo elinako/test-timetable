@@ -1,0 +1,61 @@
+.markup_overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+}
+
+label {
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  align-items: center;
+}
+.form_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 600px;
+  height: 400px;
+}
+
+.cancel_button,
+.create_button {
+  width: 130px;
+}
+
+.button_container {
+  display: flex;
+  flex-direction: row;
+  width: 270px;
+  justify-content: space-between;
+  padding-left: 100px;
+}
+
+select,
+input {
+  width: 200px;
+}
+
+input {
+  height: 30px;
+}
+
+.input_participant {
+  height: 30px;
+}
+
+.container_dropdown {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}

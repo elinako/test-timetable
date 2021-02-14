@@ -1,9 +1,12 @@
-import './styles.css';
+import './styles.scss';
 import markupCreation from './helpers/markupCreation';
 import showDropDown from './helpers/showDropDown';
 import createAnnounecement from './helpers/createAnnouncement';
 import filtrationByName from './helpers/filtrationByName';
 import deleteOveralay from './helpers/deleteOverlay';
+import emptyFields from './helpers/empteyFields';
+
+window.history.pushState('object or string', 'Title', '/calendar');
 
 const members = [
   { name: 'Kate', meetings: [] },
@@ -20,6 +23,7 @@ event_btn.addEventListener('click', () => addNewTab());
 membersList.addEventListener('change', e => filtrationByName(e));
 
 function addNewTab() {
+  window.history.pushState('object or string', 'Title', '/create-event');
   container.innerHTML = markupCreation();
   const input = document.querySelector('.input');
   const buttonCreate = document.querySelector('.create_button');
@@ -58,7 +62,9 @@ function addNewTab() {
       }
     });
 
-    if (creation(day, time).innerHTML === '') {
+    if (input.value === '' || inputParticipant.value === '') {
+      return emptyFields();
+    } else if (creation(day, time).innerHTML === '') {
       return createMetting();
     } else {
       return createAnnounecement();
@@ -83,6 +89,8 @@ function addNewTab() {
   }
 
   buttonCreate.addEventListener('click', e => {
-    onSubmit(e);
+    onSubmit(e),
+      (container.innerHTML = ''),
+      window.history.pushState('object or string', 'Title', '/calendar');
   });
 }

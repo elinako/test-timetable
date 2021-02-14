@@ -1,15 +1,20 @@
 export default function markupCreation() {
-  return `<form class='event_create_form'>
+  return `
+  <div class='markup_overlay'>
+  <div class='form_container'>
+  <form class='event_create_form'>
     <label for="">Name of the event:
     <input type="text" class='input'>
   </label>
-  <label for="">Participants: 
+  <label for="Participants">Participants: 
+  <div class='container_dropdown'>
   <form>
       <input type="text" class='input_participant'>
   </form>
   <div class="dropContainer"></div>
+</div>
   </label>
-  <label for="">Day:
+  <label for="Day">Day:
     <select class='select_day'>
     <option value='Monday'>
       Monday
@@ -59,7 +64,12 @@ export default function markupCreation() {
     </option>
    </select>
   </label>
+  <div class='button_container'>
   <button class='cancel_button'>Cancel</button>
   <button class='create_button'>Create</button>
-  </form>`;
+  </div>
+  </form>
+  </div>
+  </div>
+  `;
 }

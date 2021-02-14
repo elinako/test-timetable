@@ -11,6 +11,7 @@ export default function deleteOveralay(event) {
   function deleteMeeting() {
     event.path[1].innerHTML = '';
     event.path[1].classList.value = event.path[1].classList[0];
+    document.querySelector('.delete_container').innerHTML = '';
   }
 
   function refuseDelete() {

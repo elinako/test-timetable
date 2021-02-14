@@ -1,0 +1,19 @@
+ul {
+  width: 206px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid gray;
+  border-radius: 0.5;
+}
+
+.dropdown_btn {
+  background-color: white;
+  border: 0;
+  width: 206px;
+}
+
+.dropdown_btn:hover {
+  background-color: #e5e5e5;
+  color: white;
+}

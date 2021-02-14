@@ -1,15 +1,15 @@
 function dropDownList(input) {
-  return `<ul> <li>Kate<button class='Kate_button'>+</button></li>
-        <li>John<button class='John_button'>+</button></li>
-        <li>Hanna<button class='Hanna_button'>+</button></li>
-        <li>Denis<button class='Denis_button'>+</button></li>
+  return `<ul> <li ><button class='Kate_button dropdown_btn' >Kate</button></li>
+        <li ><button class='John_button dropdown_btn' >John</button></li>
+        <li ><button class='Hanna_button dropdown_btn' >Hanna</button></li>
+        <li ><button  class='Denis_button dropdown_btn'  >Denis</button></li>
     </ul>`;
 }
 
 export default function showDropDown(input) {
   const dropContainer = document.querySelector('.dropContainer');
   dropContainer.innerHTML = dropDownList();
-  console.log('show drop');
+  input.setAttribute('disabled', 'null');
   const KateBtn = document.querySelector('.Kate_button');
   const JohnBtn = document.querySelector('.John_button');
   const HannaBtn = document.querySelector('.Hanna_button');

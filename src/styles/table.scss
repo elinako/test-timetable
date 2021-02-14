@@ -1,0 +1,52 @@
+.head_container {
+  margin: 0 auto;
+  margin-top: 30px;
+  display: flex;
+  width: 80vw;
+  justify-content: space-between;
+}
+
+.controllers_container {
+  width: 30vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.participants {
+  height: 30px;
+  width: 17vw;
+}
+
+.event_btn {
+  height: 30px;
+  min-width: 10vh;
+}
+
+.table {
+  margin: 0 auto;
+  width: 80vw;
+  margin-top: 3px;
+  border-collapse: collapse;
+  height: 65vh;
+}
+
+td,
+th {
+  padding: 5px;
+  border: 1px solid black;
+}
+
+th {
+  background-color: #e5e5e5;
+}
+
+td {
+  width: 12vw;
+  height: 6.5vh;
+}
+
+.time_td {
+  width: 8vw;
+  text-align: center;
+}
