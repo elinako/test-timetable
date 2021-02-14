@@ -1,22 +1,16 @@
-<form>
+export default function markupCreation() {
+  return `<form class='event_create_form'>
     <label for="">Name of the event:
-    <input type="text" >
+    <input type="text" class='input'>
   </label>
-  <label for="">Participants:
-    <select>
-      <option value='Kate'>
-        Kate
-      </option>
-      <option value='John'>
-        John
-      </option>
-      <option value='Hanna'>
-        Hanna
-      </option>
-    </select>
+  <label for="">Participants: 
+  <form>
+      <input type="text" class='input_participant'>
+  </form>
+  <div class="dropContainer"></div>
   </label>
   <label for="">Day:
-    <select>
+    <select class='select_day'>
     <option value='Monday'>
       Monday
     </option>
@@ -35,7 +29,7 @@
   </select>
   </label>
   <label for="">Time:
-   <select>
+   <select class='select_time'>
     <option value='10:00'>
       10:00
     </option>
@@ -65,6 +59,7 @@
     </option>
    </select>
   </label>
-  <button>Cancel</button>
-  <button type='submit'>Create</button>
-  </form>
+  <button class='cancel_button'>Cancel</button>
+  <button class='create_button'>Create</button>
+  </form>`;
+}

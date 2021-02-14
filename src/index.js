@@ -1,8 +1,9 @@
 import './styles.css';
-
-const event_btn = document.querySelector('.event_btn');
-const container = document.querySelector('.container');
-const membersList = document.querySelector('.participants');
+import markupCreation from './helpers/markupCreation';
+import showDropDown from './helpers/showDropDown';
+import createAnnounecement from './helpers/createAnnouncement';
+import filtrationByName from './helpers/filtrationByName';
+import deleteOveralay from './helpers/deleteOverlay';
 
 const members = [
   { name: 'Kate', meetings: [] },
@@ -11,88 +12,29 @@ const members = [
   { name: 'Denis', meetings: [] },
 ];
 
-event_btn.addEventListener('click', () => addNewTab());
+const event_btn = document.querySelector('.event_btn');
+const container = document.querySelector('.container');
+const membersList = document.querySelector('.participants');
 
-function markupCreation() {
-  return `<form class='event_create_form'>
-  <label for="">Name of the event:
-  <input type="text" class='input'>
-</label>
-<label for="">Participants:
-  <select class='select_participant'>
-    <option value='Kate'>
-      Kate
-    </option>
-    <option value='John'>
-      John
-    </option>
-    <option value='Hanna'>
-      Hanna
-    </option>
-    <option value='Denis'>
-    Denis
-  </option>
-  </select>
-</label>
-<label for="">Day:
-  <select class='select_day'>
-  <option value='Monday'>
-    Monday
-  </option>
-  <option value='Tuesday'>
-    Tuesday
-  </option>
-  <option value='Wednesday'>
-    Wednesday
-  </option>
-  <option value='Thursday'>
-    Thursday
-  </option>
-  <option value='Friday'>
-    Friday
-  </option>
-</select>
-</label>
-<label for="">Time:
- <select class='select_time'>
-  <option value='10:00'>
-    10:00
-  </option>
-  <option value='11:00'>
-    11:00
-  </option>
-  <option value='12:00'>
-    12:00
-  </option>
-  <option value='13:00'>
-    13:00
-  </option>
-  <option value='14:00'>
-    14:00
-  </option>
-  <option value='15:00'>
-    15:00
-  </option>
-  <option value='16:00'>
-    16:00
-  </option>
-  <option value='17:00'>
-    17:00
-  </option>
-  <option value='18:00'>
-    18:00
-  </option>
- </select>
-</label>
-<button>Cancel</button>
-<button class='create_button'>Create</button>
-</form>`;
-}
+event_btn.addEventListener('click', () => addNewTab());
+membersList.addEventListener('change', e => filtrationByName(e));
 
 function addNewTab() {
   container.innerHTML = markupCreation();
   const input = document.querySelector('.input');
   const buttonCreate = document.querySelector('.create_button');
+  const buttonCancel = document.querySelector('.cancel_button');
+  const inputParticipant = document.querySelector('.input_participant');
+
+  buttonCancel.addEventListener('click', hideMarkup);
+  inputParticipant.addEventListener('focus', () =>
+    showDropDown(inputParticipant),
+  );
+  buttonCancel.addEventListener('click', () => (container.innerHTML = ''));
+
+  function hideMarkup() {
+    container.innerHTML = '';
+  }
 
   function creation(day, time) {
     return document.querySelector(`.${day}_${time}`);
@@ -102,38 +44,45 @@ function addNewTab() {
     e.preventDefault();
     const day = document.querySelector('.select_day').value;
     const time = document.querySelector('.select_time').value.slice(0, 2);
-    const participant = document.querySelector('.select_participant').value;
-    const user = members.find(member => member.name === participant);
-    user.meetings.push({
-      name: user.name,
+    const participants = inputParticipant.value.split(',');
+
+    const meeting = {
+      participants: participants.slice(0, participants.length - 1),
       day: day,
       time: time,
-      meeting: input.value,
+    };
+
+    members.forEach(member => {
+      if (participants.includes(member.name)) {
+        member.meetings.push(meeting);
+      }
     });
 
-    return (
-      (creation(
+    if (creation(day, time).innerHTML === '') {
+      return createMetting();
+    } else {
+      return createAnnounecement();
+    }
+
+    function createMetting() {
+      const classNames = `${participants
+        .slice(0, participants.length - 1)
+        .join(`,`)}`;
+
+      creation(
         day,
         time,
-      ).innerHTML = `${input.value} <button class='delete_btn'>x</button>`),
-      creation(day, time).classList.add(`${user.name}`)
-    );
+      ).innerHTML = `<p>${input.value}</p> <button class='delete_btn'>x</button>`;
+      creation(day, time).classList.add(classNames);
+
+      const deleteMettingBtn = document.querySelector('.delete_btn');
+      deleteMettingBtn.addEventListener('click', event =>
+        deleteOveralay(event),
+      );
+    }
   }
 
   buttonCreate.addEventListener('click', e => {
     onSubmit(e);
-  });
-}
-
-membersList.addEventListener('change', e => filtrationByName(e));
-
-function filtrationByName(e) {
-  const name = e.target.value;
-  const allTd = document.querySelectorAll('td');
-  const requiredTd = document.querySelectorAll(`.${name}`);
-  allTd.forEach(td => {
-    if (!td.classList.contains(`${name}`)) {
-      td.children.forEach(elem => console.log(elem));
-    }
   });
 }
