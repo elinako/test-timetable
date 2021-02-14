@@ -4,7 +4,6 @@ import showDropDown from './helpers/showDropDown';
 import createAnnounecement from './helpers/createAnnouncement';
 import filtrationByName from './helpers/filtrationByName';
 import deleteOveralay from './helpers/deleteOverlay';
-import emptyFields from './helpers/empteyFields';
 
 window.history.pushState('object or string', 'Title', '/calendar');
 
@@ -63,7 +62,7 @@ function addNewTab() {
     });
 
     if (input.value === '' || inputParticipant.value === '') {
-      return emptyFields();
+      alert('Please, enter the name of meeting and participants');
     } else if (creation(day, time).innerHTML === '') {
       return createMetting();
     } else {
@@ -78,7 +77,7 @@ function addNewTab() {
       creation(
         day,
         time,
-      ).innerHTML = `<p>${input.value}</p> <button class='delete_btn'>x</button>`;
+      ).innerHTML = `<button class='delete_btn'>${input.value}   X</button>`;
       creation(day, time).classList.add(classNames);
 
       const deleteMettingBtn = document.querySelector('.delete_btn');
