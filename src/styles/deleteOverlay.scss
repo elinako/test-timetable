@@ -1,0 +1,37 @@
+.announcement_msg {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.delete_overlay_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+}
+
+.delete_msg {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
+  height: 130px;
+  background-color: #b2b0b1;
+}
+
+.delete_btn_container {
+  padding-top: 6px;
+  width: 180px;
+  display: flex;
+  justify-content: space-between;
+}

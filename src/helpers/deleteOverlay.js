@@ -1,6 +1,7 @@
 export default function deleteOveralay(event) {
-  document.querySelector('.delete_container').innerHTML =
-    '<p>Are You shure You want to delete event?</p><button class="delete_yes">Yes</button><button class="delete_no">No</button>';
+  document.querySelector(
+    '.delete_container',
+  ).innerHTML = `<div class="delete_overlay_container"><div class="delete_msg"><p>Are You shure You want to delete "${event.path[1].innerText}" event?</p><div class="delete_btn_container"><button class="delete_yes">Yes</button><button class="delete_no">No</button></div></div></div>`;
 
   const deleteYesBtn = document.querySelector('.delete_yes');
   const deleteNoBtn = document.querySelector('.delete_no');
